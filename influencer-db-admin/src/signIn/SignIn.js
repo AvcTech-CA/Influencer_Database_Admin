@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
-
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './SignIn.css'; // Import external CSS
 
 function SignIn() {
-
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -28,13 +29,14 @@ function SignIn() {
                 },
                 body: JSON.stringify(formData)
             });
-            
+
             const data = await response.json();
             console.log(data);
             if (response.ok) {
                 setMessage(data.message);
-              
-                setFormData({  email: "",  password: "" });
+                localStorage.setItem("authToken", data.token);
+                navigate('/home');
+                setFormData({ email: "", password: "" });
             } else {
                 setError(data.error || "Something went wrong");
             }
@@ -43,38 +45,39 @@ function SignIn() {
         }
     };
 
-  return (
-    <>
-        <div>
-            <div>
-                <h1>{message}</h1>
+    return (
+        <div className="signin-container">
+            <div className="form-box">
+                <h2>Sign In</h2>
+                {message && <p className="success-msg">{message}</p>}
+                {error && <p className="error-msg">{error}</p>}
+
+                <form onSubmit={handleSubmit} className="signin-form">
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="form-input"
+                    />
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                        className="form-input"
+                    />
+
+                    <button type="submit" className="submit-btn">Sign In</button>
+                </form>
             </div>
-        <form onSubmit={handleSubmit} className="signup-form">
-                
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="form-input"
-                />
-               
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    className="form-input"
-                />
-                <button type="submit" className="submit-btn">Sign Up</button>
-            </form>
         </div>
-    </>
-  )
+    );
 }
 
-export default SignIn
+export default SignIn;
