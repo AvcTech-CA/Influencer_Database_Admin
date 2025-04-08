@@ -26,8 +26,8 @@ function Header() {
       </div>
 
       <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
+        <a href="/home">Influencers</a>
+        <a href="/users">Users</a>
       </nav>
 
       <div className="nav-icons">
@@ -35,7 +35,7 @@ function Header() {
       </div>
 
       <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
-        <i className="fas fa-bars"></i>
+      &#9776;
       </button>
 
       {localStorage.getItem('authToken') && <button className='log-out-btn' onClick={handleLogout}>logout</button>}

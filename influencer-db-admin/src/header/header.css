@@ -1,67 +1,68 @@
-/* header.css */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: #141414;
-    border-bottom: 0.1px solid #1e1e2d72;
-    box-shadow: 2px  #1e1e2d ;
-    color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .logo img {
+    background-color: #141414; /* Pure black background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    color: #ffffff; /* White text for contrast */
+}
+
+.logo img {
     width: 120px;
     height: auto;
-  }
-  
-  .nav-links {
+}
+
+.nav-links {
     display: flex;
     gap: 20px;
-  }
-  
-  .nav-links a {
-    color: #1e1e2d;
+}
+
+.nav-links a {
+    color: #ddd; /* Light gray text for visibility */
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s ease-in-out;
-  }
-  
-  .nav-links a:hover {
-    color: #ffcc00;
-  }
-  
-  .nav-icons {
+}
+
+.nav-links a:hover {
+    color: #ffcc00; /* Yellow on hover */
+}
+
+.nav-icons {
     display: flex;
     align-items: center;
-  }
-  
-  .sign-in-btn {
+}
+
+/* Sign-in Button */
+.sign-in-btn {
     background-color: #ffcc00;
-    color: #1e1e2d;
+    color: #000; /* Black text for contrast */
     padding: 8px 16px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease-in-out;
-  }
-  
-  .sign-in-btn:hover {
+}
+
+.sign-in-btn:hover {
     background-color: #e6b800;
-  }
-  
-  .mobile-menu-btn {
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
     display: none;
-    background: #1e1e2d;
+    background: none;
     border: none;
     font-size: 24px;
     color: #fff;
     cursor: pointer;
-  }
-  
-  .log-out-btn{
+}
+
+/* Logout Button */
+.log-out-btn {
     background: #ff4747;
     width: 100px;
     color: #fff;
@@ -70,34 +71,36 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease-in-out;
-  }
-  
-  .logOut-button{
+}
+
+.log-out-btn:hover {
     background: #e03e3e;
-  }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
     .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background: #1e1e2d;
-      padding: 15px 0;
-      text-align: center;
-      color: #ffffff;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9); /* Slight transparency for better visibility */
+        padding: 15px 0;
+        text-align: center;
     }
-  
+
+    .nav-links a {
+        color: #fff; /* White text for contrast */
+    }
+
     .nav-links.active {
-      display: flex;
+        display: flex;
     }
-  
+
     .mobile-menu-btn {
-      display: block;
-    color: #fff;
+        display: block;
+        color: #ffcc00; /* Yellow for visibility */
     }
-  }
-  
+}

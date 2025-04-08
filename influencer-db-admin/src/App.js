@@ -8,6 +8,8 @@ import SignIn from './signIn/SignIn';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import InfluencerForm from './InfluencerForm/InfluencerForm';
+import AllUsers from './allUsers/AllUsers';
+import InfluencerDetails from './influencerDetails/InfluencerDetails';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
     <Header/>
     <Routes>
         <Route path='/' element={<SignIn/>}></Route>
+        <Route path='/users' element={<AllUsers/>}></Route>
+        <Route path="/influencerDetails" element={<InfluencerDetails />}> </Route>
         <Route path="/" element={<PrivateRoute />}>
                     <Route path="/home" element={<Home />} />
          <Route path='/InfluencerForm' element={<InfluencerForm/>}></Route>
