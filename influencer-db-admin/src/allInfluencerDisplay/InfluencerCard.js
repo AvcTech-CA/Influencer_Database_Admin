@@ -6,8 +6,12 @@ import InfluencerDetails from "../influencerDetails/InfluencerDetails";
 const InfluencerCard = () => {
   const navigate = useNavigate();
   const [influencers, setInfluencers] = useState([]);
+  const [filteredInfluencers, setFilteredInfluencers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [nameSearch, setNameSearch] = useState('');
+  const [GeoLocationSearch, setUsernameSearch] = useState('');
 
   useEffect(() => {
     const fetchInfluencers = async () => {
@@ -16,6 +20,7 @@ const InfluencerCard = () => {
         if (!response.ok) throw new Error("Failed to fetch influencers");
         const data = await response.json();
         setInfluencers(data);
+        setFilteredInfluencers(data); // initially all
       } catch (error) {
         setError(error.message);
       } finally {
@@ -25,6 +30,14 @@ const InfluencerCard = () => {
 
     fetchInfluencers();
   }, []);
+
+  useEffect(() => {
+    const filtered = influencers.filter((influencer) =>
+      influencer.Name.toLowerCase().includes(nameSearch.toLowerCase()) &&
+      influencer.GeoLocation.toLowerCase().includes(GeoLocationSearch.toLowerCase())
+    );
+    setFilteredInfluencers(filtered);
+  }, [nameSearch, GeoLocationSearch, influencers]);
 
   if (loading) return <p className="loading-message">Loading influencers...</p>;
   if (error) return <p className="error-message">{error}</p>;
@@ -37,8 +50,26 @@ const InfluencerCard = () => {
         </button>
       </div>
 
+      {/* Search Fields */}
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by Name"
+          value={nameSearch}
+          onChange={(e) => setNameSearch(e.target.value)}
+          className="search-input"
+        />
+        <input
+          type="text"
+          placeholder="Search by Geolocation"
+          value={GeoLocationSearch}
+          onChange={(e) => setUsernameSearch(e.target.value)}
+          className="search-input"
+        />
+      </div>
+
       <div className="influencer-grid">
-        {influencers.map((influencer, index) => (
+        {filteredInfluencers.map((influencer, index) => (
           <div
             key={index}
             className="influencer-card"
