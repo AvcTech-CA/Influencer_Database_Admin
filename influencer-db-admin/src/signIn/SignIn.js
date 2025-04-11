@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignIn.css'; // Import external CSS
-
+import API_BASE_URL from '../apiconfig';
 function SignIn() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ function SignIn() {
         setError("");
 
         try {
-            const response = await fetch("http://localhost:5000/admin/signin", {
+            const response = await fetch(`${API_BASE_URL}/admin/signin`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

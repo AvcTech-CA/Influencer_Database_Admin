@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./InfluencerForm.css";
+import API_BASE_URL from "../apiconfig";
 
 const InfluencerForm = () => {
   const [formData, setFormData] = useState({
@@ -61,7 +62,7 @@ const InfluencerForm = () => {
     });
 
     try {
-      const response = await fetch("http://localhost:5000/admin/influencerForm", {
+      const response = await fetch(`${API_BASE_URL}/admin/influencerForm`, {
         method: "POST",
         body: formDataToSend,
       });
