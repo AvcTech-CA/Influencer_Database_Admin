@@ -2,6 +2,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./influencerDetails.css";
+import API_BASE_URL from "../apiconfig";
 
 const InfluencerDetails = () => {
   const { state } = useLocation();
@@ -57,32 +58,6 @@ const InfluencerDetails = () => {
     <p><strong>SharedDrivePath:</strong> {influencer.SharedDrivePath}</p>
     <p><strong>OtherBrandsWorkedWith:</strong> {influencer.OtherBrandsWorkedWith}</p>
     <p><strong>ContentSampleLinks:</strong> {influencer.ContentSampleLinks}</p>
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-    
-
-
   </div>
 </div>
     </div>

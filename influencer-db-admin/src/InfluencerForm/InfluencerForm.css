@@ -17,6 +17,12 @@
     margin-top: 10px;
     font-weight: bold;
   }
+
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
   
   input,
   textarea {
@@ -47,3 +53,27 @@
     background: #0056b3;
   }
   
+
+  .popup-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .popup-box.success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .popup-box.error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }

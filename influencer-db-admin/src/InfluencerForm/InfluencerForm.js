@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import "./InfluencerForm.css";
+import { useNavigate } from "react-router-dom"; // Import navigate
 import API_BASE_URL from "../apiconfig";
 
 const InfluencerForm = () => {
+  const navigate = useNavigate();
+  const [imageError, setImageError] = useState("");
+  const [popupMessage, setPopupMessage] = useState("");
+  const [popupType, setPopupType] = useState(""); // 'success' or 'error'
   const [formData, setFormData] = useState({
     Photo: "",
     Name: "",
@@ -45,9 +50,30 @@ const InfluencerForm = () => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, Photo: e.target.files[0] });
+    const file = e.target.files[0];
+  
+    if (file) {
+      const validTypes = ["image/jpeg", "image/png", "image/jpg"];
+      if (!validTypes.includes(file.type)) {
+        setImageError("Invalid file format. Please upload JPEG, PNG, or jpg.");
+        setFormData({ ...formData, Photo: "" });
+      } else {
+        setImageError("");
+        setFormData({ ...formData, Photo: file });
+      }
+    }
   };
 
+  const showPopup = (message, type) => {
+    setPopupMessage(message);
+    setPopupType(type);
+    setTimeout(() => {
+      setPopupMessage("");
+      if (type === "success") {
+        navigate("/influencer");
+      }
+    }, 3000);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -68,13 +94,13 @@ const InfluencerForm = () => {
       });
 
       if (response.ok) {
-        alert("Influencer data submitted successfully!");
+        showPopup("Influencer data submitted successfully!", "success");
       } else {
-        alert("Failed to submit data.");
+        showPopup("Failed to submit data.", "error");
       }
     } catch (error) {
       console.error("Error submitting data:", error);
-      alert("An error occurred while submitting the form.");
+      showPopup("An error occurred while submitting the form.", "error");
     }
   };
 
@@ -84,7 +110,7 @@ const InfluencerForm = () => {
       <form onSubmit={handleSubmit}>
         <label>Photo:</label>
         <input type="file" name="Photo" onChange={handleFileChange} />
-
+        {imageError && <p className="error-message">{imageError}</p>}
         <label>Name:</label>
         <input type="text" name="Name" value={formData.Name} onChange={handleChange} />
 
@@ -138,6 +164,13 @@ const InfluencerForm = () => {
 
         <button type="submit">Submit</button>
       </form>
+
+
+      {popupMessage && (
+        <div className={`popup-box ${popupType}`}>
+          {popupMessage}
+        </div>
+      )}
     </div>
   );
 };

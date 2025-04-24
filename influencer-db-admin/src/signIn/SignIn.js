@@ -74,6 +74,7 @@ function SignIn() {
                     />
 
                     <button type="submit" className="submit-btn">Sign In</button>
+                    <p>New User ? Sign Up?</p>
                 </form>
             </div>
         </div>
