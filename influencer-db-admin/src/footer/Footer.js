@@ -6,8 +6,7 @@ function Footer() {
         <div class="triangle"></div>
         <p>COPYRIGHT © 2025 ALL RIGHTS RESERVED.</p>
         <div class="footer-links">
-            <a href="https://multiculturalmindset.co/">Home</a>
-            <a href="https://multicultural-quotient.vercel.app/">Multicultural Mindset</a>
+            <a href="#">Home</a>
         </div>
     </div>
   )

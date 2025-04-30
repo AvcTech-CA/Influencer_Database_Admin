@@ -37,7 +37,9 @@ const InfluencerForm = () => {
     PostLinksofAVCPastProjects: "",
     SharedDrivePath: "",
     OtherBrandsWorkedWith: [],
-    ContentSampleLinks: [],
+    ContentSampleLinks: []
+    
+
   });
 
   const handleChange = (e) => {
@@ -161,6 +163,36 @@ const InfluencerForm = () => {
 
         <label>Internal Notes (comma-separated):</label>
         <input type="text" name="InternalNotes" onChange={(e) => handleArrayChange(e, "InternalNotes")} />
+
+        <label>CampaignNumber:</label>
+        <input type="text" name="CampaignNumber" value={formData.CampaignNumber} onChange={handleChange} />
+
+        <label>NameofPastProjects (comma-separated):</label>
+        <input type="text" name="NameofPastProjects" onChange={(e) => handleArrayChange(e, "NameofPastProjects")} />
+
+        <label>AVCBookedRate:</label>
+        <input type="text" name="AVCBookedRate" value={formData.AVCBookedRate} onChange={handleChange} />
+
+        <label>DeliverablesforPastProjects:</label>
+        <input type="text" name="DeliverablesforPastProjects" value={formData.DeliverablesforPastProjects} onChange={handleChange} />
+
+        <label>MonthofAVCPastProjects:</label>
+        <input type="text" name="MonthofAVCPastProjects" value={formData.MonthofAVCPastProjects} onChange={handleChange} />
+
+        <label>YearofAVCPastProjects:</label>
+        <input type="text" name="YearofAVCPastProjects" value={formData.YearofAVCPastProjects} onChange={handleChange} />
+
+        <label>PostLinksofAVCPastProjects:</label>
+        <input type="text" name="PostLinksofAVCPastProjects" value={formData.PostLinksofAVCPastProjects} onChange={handleChange} />
+
+        <label>SharedDrivePath:</label>
+        <input type="text" name="SharedDrivePath" value={formData.SharedDrivePath} onChange={handleChange} />
+
+        <label>OtherBrandsWorkedWith: (comma-separated):</label>
+        <input type="text" name="OtherBrandsWorkedWith" onChange={(e) => handleArrayChange(e, "OtherBrandsWorkedWith")} />
+
+        <label>ContentSampleLinks: (comma-separated):</label>
+        <input type="text" name="ContentSampleLinks" onChange={(e) => handleArrayChange(e, "ContentSampleLinks")} />
 
         <button type="submit">Submit</button>
       </form>
