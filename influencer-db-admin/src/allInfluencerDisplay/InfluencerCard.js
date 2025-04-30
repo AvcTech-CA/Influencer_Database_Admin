@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./InfluencerCard.css";
 import { useNavigate } from 'react-router-dom';
 import InfluencerDetails from "../influencerDetails/InfluencerDetails";
+import API_BASE_URL from "../apiconfig";
 
 const InfluencerCard = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const InfluencerCard = () => {
   useEffect(() => {
     const fetchInfluencers = async () => {
       try {
-        const response = await fetch("http://localhost:5000/admin/allInfluencer");
+        const response = await fetch(`${API_BASE_URL}/admin/allInfluencer`);
         if (!response.ok) throw new Error("Failed to fetch influencers");
         const data = await response.json();
         setInfluencers(data);

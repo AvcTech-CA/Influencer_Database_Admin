@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './AllUsers.css'
-
+import API_BASE_URL from "../apiconfig";
 function AllUsers() {
     const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -12,7 +12,7 @@ function AllUsers() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/users/");
+      const response = await fetch(`${API_BASE_URL}/users/`);
       const data = await response.json();
       console.log(data)
       setUsers(data); // Assuming API returns an array of users
