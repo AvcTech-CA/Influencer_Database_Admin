@@ -72,7 +72,7 @@ const InfluencerForm = () => {
     setTimeout(() => {
       setPopupMessage("");
       if (type === "success") {
-        navigate("/influencer");
+        navigate("/home");
       }
     }, 3000);
   };
