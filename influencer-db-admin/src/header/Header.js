@@ -28,6 +28,7 @@ function Header() {
       <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
         <a href="/home">Influencers</a>
         <a href="/users">Users</a>
+        <a href="/signUp">Create-Admin</a>
       </nav>
 
       <div className="nav-icons">

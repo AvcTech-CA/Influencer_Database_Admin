@@ -1,0 +1,220 @@
+/* General container styling */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #121212;
+    padding: 20px;
+    color: #ffffff;
+}
+
+/* Image Section */
+.signup-container-image {
+    flex: 1;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.signup-container-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Form Section */
+.signup-container-form {
+    width: 50%;
+    background: #1f1f1f;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+/* Form Title */
+.signup-container-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* Success & Error Messages */
+.success-message {
+    color: #4caf50;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Form Inputs */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: auto;
+    gap: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #1e90ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #1e90ff;
+    color: #ffffff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #007bff;
+}
+
+/* Popup Background */
+.error-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Popup Content */
+.error-popup-content {
+    background: #1f1f1f;
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    max-width: 350px;
+    width: 90%;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+/* Error Message */
+.error-popup-content p {
+    font-size: 18px;
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Close Icon */
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+    color: #ff5252;
+}
+
+/* Close Button */
+.close-popup-btn {
+    background: linear-gradient(135deg, #ff4d4d, #ff0000);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.close-popup-btn:hover {
+    background: linear-gradient(135deg, #ff6666, #ff3333);
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.signup-message {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+.signup-link {
+    font-weight: 500;
+    color: #1e90ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.signup-link:hover {
+    color: #63b3ed;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .signup-container-image {
+        display: none;
+    }
+
+    .signup-container-form {
+        width: 100%;
+        max-width: 100%;
+    }
+}

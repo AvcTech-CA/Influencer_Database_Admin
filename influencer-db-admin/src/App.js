@@ -11,6 +11,7 @@ import InfluencerForm from './InfluencerForm/InfluencerForm';
 import AllUsers from './allUsers/AllUsers';
 import InfluencerDetails from './influencerDetails/InfluencerDetails';
 
+
 function App() {
   return (
     <Router>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<PrivateRoute />}>
                     <Route path="/home" element={<Home />} />
          <Route path='/InfluencerForm' element={<InfluencerForm/>}></Route>
+         <Route path='/signUp' element={<SignUp/>}></Route>
 
         </Route>
              
