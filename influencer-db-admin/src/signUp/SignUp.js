@@ -60,7 +60,7 @@ function SignUp() {
     }
   
     try {
-      const response = await fetch("http://localhost:5000/admin/signUp", {
+      const response = await fetch(`${API_BASE_URL}/admin/signUp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // <-- Set header
