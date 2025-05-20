@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SignIn.css'; // Import external CSS
+import './SignIn.css'; // External CSS
 import API_BASE_URL from '../apiconfig';
+import { multiStepContext } from '../StepContext';
+
 function SignIn() {
+    const { currentEmail, setcurrentEmail } = useContext(multiStepContext);
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -32,11 +36,20 @@ function SignIn() {
 
             const data = await response.json();
             console.log(data);
+
             if (response.ok) {
                 setMessage(data.message);
+
+                // Save token and email to localStorage
                 localStorage.setItem("authToken", data.token);
-                navigate('/home');
+                localStorage.setItem("email", formData.email);
+
+                // Set email in context
+                setcurrentEmail(formData.email);
+
+                // Clear form and navigate
                 setFormData({ email: "", password: "" });
+                navigate('/home');
             } else {
                 setError(data.error || "Something went wrong");
             }
@@ -74,7 +87,6 @@ function SignIn() {
                     />
 
                     <button type="submit" className="submit-btn">Sign In</button>
-                    <p>New User ? Sign Up?</p>
                 </form>
             </div>
         </div>

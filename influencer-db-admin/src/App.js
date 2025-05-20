@@ -14,6 +14,7 @@ import InfluencerDetails from './influencerDetails/InfluencerDetails';
 
 function App() {
   return (
+
     <Router>
     <>
     <Header/>

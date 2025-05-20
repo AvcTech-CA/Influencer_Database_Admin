@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import './signUp.css';
 import { useNavigate } from 'react-router-dom';
+import  {multiStepContext}  from '../../src/StepContext';
 import API_BASE_URL from '../apiconfig';
 
+
 function SignUp() {
-  const [formData, setFormData] = useState({
+  const { authEmail , currentEmail} = useContext(multiStepContext);
+
+  const [formData, setFormData] = useState({  
     email: "",
     password: ""
   });
@@ -94,8 +98,13 @@ function SignUp() {
   return (
     <>
       <div className="signup-container">
-        
+       
         <div className="signup-container-form">
+        {currentEmail && (
+  <p style={{ marginBottom: '10px', fontWeight: 'bold' }}>
+    Current Email: {currentEmail}
+  </p>
+)}
           <h2>Create an Admin</h2>
           <form onSubmit={handleSubmit} className="signup-form">
             <input
@@ -120,7 +129,7 @@ function SignUp() {
             />
             {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
 
-            <button type="submit" className="submit-btn">Sign Up</button>
+            <button type="submit" className="submit-btn">Make an Admin</button>
           </form>
         </div>
       </div>
