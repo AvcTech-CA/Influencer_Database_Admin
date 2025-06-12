@@ -1,103 +1,127 @@
-/* influencerDetails.css */
-
+/* Base container styling */
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 40px auto;
-  padding: 20px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #2c3e50;
+  padding: 30px;
+  background-color: #f9f9fc;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
 }
 
+/* Back & Export Buttons */
 .add-btn {
-  background-color: #3498db;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
-  padding: 10px 18px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
   border: none;
   border-radius: 8px;
+  margin: 5px;
   cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 20px;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 .add-btn:hover {
-  background-color: #2980b9;
+  background: linear-gradient(135deg, #4e0eca, #1e60d2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 
-.details-card {
-  display: flex;
-  align-items: flex-start;
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  padding: 30px;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.details-img {
-  width: 280px;
-  height: 280px;
-  border-radius: 16px;
-  object-fit: cover;
-  border: 5px solid #3498db;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.details-info {
-  flex: 1;
-  max-height: 600px;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
-.details-info h2 {
-  font-size: 28px;
-  margin-bottom: 16px;
-  color: #34495e;
-}
-
-.details-info p {
-  font-size: 16px;
-  margin: 8px 0;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 6px;
-}
-
-.details-info p strong {
-  color: #2c3e50;
-  display: inline-block;
-  width: 220px;
-}
-
+/* Export buttons section */
 .export-buttons {
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.export-buttons button {
-  margin-right: 1rem;
+/* Main card layout */
+.details-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-/* Responsive design */
+/* Influencer Image */
+.details-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #2575fc;
+  margin: 0 auto;
+}
+
+/* Info Section */
+.details-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 10px;
+}
+
+/* Each info item */
+.details-info p {
+  background-color: #f0f4fa;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.details-info strong {
+  color: #111;
+}
+
+/* Section Heading */
+.details-info h2 {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 28px;
+  margin: 20px 0;
+  color: #222;
+}
+
+/* Social links */
+.details-info ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.details-info li {
+  margin: 4px 0;
+}
+
+.details-info a {
+  color: #2575fc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.details-info a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .details-card {
-    flex-direction: column;
-    align-items: center;
+  .container {
+    padding: 20px;
   }
 
   .details-img {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
   }
 
   .details-info {
-    max-height: none;
-    width: 100%;
-    overflow-y: visible;
-  }
-
-  .details-info p strong {
-    width: 100%;
+    grid-template-columns: 1fr;
   }
 }

@@ -94,9 +94,67 @@ const InfluencerCard = () => {
       const languageMatch = influencer.Language?.toLowerCase().includes(languageSearch.toLowerCase());
       const nicheMatch = influencer.ContentNiche?.toLowerCase().includes(contentNicheSearch.toLowerCase());
       const religionMatch = influencer.Religion?.toLowerCase().includes(religionSearch.toLowerCase());
-      const followerSizeMatch = selectedFollowerSize === '' || influencer.FollowerSize === selectedFollowerSize;
+      let followerSizeMatch = true;
+
+if (selectedFollowerSize !== '') {
+  const size = Number(influencer.FollowerSizeAndTier);
+
+  if (selectedFollowerSize === 'Nano(1000-10,000)') {
+    followerSizeMatch = size >= 1000 && size <= 10000;
+  } else if (selectedFollowerSize === 'Micro(10,001-50,000)') {
+    followerSizeMatch = size >= 10001 && size <= 50000;
+  } else if (selectedFollowerSize === 'Mid(50,001-500,000)') {
+    followerSizeMatch = size >= 50001 && size <= 500000;
+  } else if (selectedFollowerSize === 'Macro(500,001-1,000,000)') {
+    followerSizeMatch = size >= 500001 && size <= 1000000;
+  } else if (selectedFollowerSize === 'Mega(1M+)') {
+    followerSizeMatch = size > 1000000;
+  }
+}
+
+let costMatch = true;
+
+if (selectedFilterCost !== '') {
+  const cost = Number(influencer.CostRange?.toString().replace(/[^0-9.-]+/g, '')) || 0;
+
+  switch (selectedFilterCost) {
+    case '<$500':
+      costMatch = cost < 500;
+      break;
+    case '$501-$1000':
+      costMatch = cost >= 501 && cost <= 1000;
+      break;
+    case '$1,001-$3000':
+      costMatch = cost >= 1001 && cost <= 3000;
+      break;
+    case '$3,001-$5000':
+      costMatch = cost >= 3001 && cost <= 5000;
+      break;
+    case '$5001-$8000':
+      costMatch = cost >= 5001 && cost <= 8000;
+      break;
+    case '$8001-$10,000':
+      costMatch = cost >= 8001 && cost <= 10000;
+      break;
+    case '$10,001-$13,000':
+      costMatch = cost >= 10001 && cost <= 13000;
+      break;
+    case '$13,001-$15,000':
+      costMatch = cost >= 13001 && cost <= 15000;
+      break;
+    case '$15,001-$18,000':
+      costMatch = cost >= 15001 && cost <= 18000;
+      break;
+    case '>$18,001':
+      costMatch = cost > 18001;
+      break;
+    default:
+      costMatch = true;
+  }
+}
+
       const engagementRateMatch = selectedEngagementRate === '' || influencer.EngagementRate === selectedEngagementRate;
-      const costMatch = selectedFilterCost === '' || influencer.Cost === selectedFilterCost;
+      // const costMatch = selectedFilterCost === '' || influencer.Cost === selectedFilterCost;
 
       return (
         nameMatch &&
