@@ -153,8 +153,31 @@ if (selectedFilterCost !== '') {
   }
 }
 
-      const engagementRateMatch = selectedEngagementRate === '' || influencer.EngagementRate === selectedEngagementRate;
-      // const costMatch = selectedFilterCost === '' || influencer.Cost === selectedFilterCost;
+let engagementRateMatch = true;
+
+if (selectedEngagementRate !== '') {
+  const rate = parseFloat(influencer.EngagementRate?.replace('%', ''));
+
+  switch (selectedEngagementRate) {
+    case '<1%':
+      engagementRateMatch = rate < 1;
+      break;
+    case '1-2%':
+      engagementRateMatch = rate >= 1 && rate <= 2;
+      break;
+    case '2.1%-4%':
+      engagementRateMatch = rate > 2 && rate <= 4;
+      break;
+    case '4.1%-5%':
+      engagementRateMatch = rate > 4 && rate <= 5;
+      break;
+    case '>6%':
+      engagementRateMatch = rate > 6;
+      break;
+    default:
+      engagementRateMatch = true;
+  }
+}
 
       return (
         nameMatch &&
