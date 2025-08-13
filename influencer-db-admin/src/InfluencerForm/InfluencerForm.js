@@ -76,6 +76,17 @@ const InfluencerForm = () => {
       }
     }, 3000);
   };
+
+    // ⛔ Prevent Enter from submitting the form (but allow newline in <textarea>)
+  const handleFormKeyDown = (e) => {
+    if (e.key === "Enter") {
+      const el = e.target;
+      const tag = el.tagName?.toLowerCase();
+      if (tag !== "textarea") {
+        e.preventDefault(); // stops implicit submit
+      }
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -109,7 +120,7 @@ const InfluencerForm = () => {
   return (
     <div className="form-container">
       <h2>Influencer Data Form</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onKeyDownCapture={handleFormKeyDown}>
         <label>Photo:</label>
         <input type="file" name="Photo" onChange={handleFileChange} />
         {imageError && <p className="error-message">{imageError}</p>}

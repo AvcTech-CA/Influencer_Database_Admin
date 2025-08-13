@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import InfluencerForm from './InfluencerForm/InfluencerForm';
 import AllUsers from './allUsers/AllUsers';
 import InfluencerDetails from './influencerDetails/InfluencerDetails';
+import InfluencerHistory from "./influencerHistory/InfluencerHistory";
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
                     <Route path="/home" element={<Home />} />
          <Route path='/InfluencerForm' element={<InfluencerForm/>}></Route>
          <Route path='/signUp' element={<SignUp/>}></Route>
-
+        <Route path="/influencers/:id/history" element={<InfluencerHistory />} />
         </Route>
              
 

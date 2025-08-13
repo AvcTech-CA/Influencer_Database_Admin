@@ -1,0 +1,59 @@
+.history-page.container { padding: 16px; }
+
+.history-page__topbar {
+  display: grid;
+  grid-template-columns: 120px 1fr 160px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.history-page__title h2 { margin: 0; }
+.history-page__subtitle { color: #666; font-size: 14px; }
+
+.history-page__actions { display: flex; justify-content: flex-end; }
+
+.history-page__filters {
+  display: flex;
+  gap: 10px;
+  margin: 8px 0 12px;
+  flex-wrap: wrap;
+}
+.filter-input {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 240px;
+}
+
+.history-page__status { padding: 16px; color: #444; }
+.history-page__status.error { color: #b00020; }
+
+.history-table-wrap {
+  overflow: auto;
+  border: 1px solid #eee;
+  border-radius: 12px;
+}
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.history-table th, .history-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f3f3f3;
+  vertical-align: top;
+}
+.history-table th {
+  position: sticky; top: 0; background: #fafafa; z-index: 1;
+}
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.field { white-space: nowrap; font-weight: 600; }
+
+.history-page__pager {
+  display: flex; align-items: center; gap: 12px;
+  justify-content: center; margin-top: 12px;
+}

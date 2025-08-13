@@ -26,6 +26,30 @@ const InfluencerCard = () => {
   const [filterCosts, setFilterCosts] = useState([]);
   const [selectedFilterCost, setSelectedFilterCost] = useState('');
 
+  const [ethnicities, setEthnicities] = useState([]);
+  const [selectedEthnicity, setSelectedEthnicity] = useState('');
+  
+useEffect(() => {
+  // build unique, sorted list from whatever field exists
+  const list = Array.from(
+    new Set(
+      influencers
+        .map(i => {
+          const raw = i.Ethnicity ?? i.Ethnisity ?? '';
+          // support array OR comma-separated strings
+          if (Array.isArray(raw)) return raw.map(x => String(x).trim()).join(',');
+          return String(raw).trim();
+        })
+        .filter(Boolean)
+    )
+  )
+  // explode any comma-joined values into individual options
+  .flatMap(item => item.split(',').map(x => x.trim()))
+  .filter(Boolean);
+
+  setEthnicities(Array.from(new Set(list)).sort((a, b) => a.localeCompare(b)));
+}, [influencers]);
+
   useEffect(() => {
     const fetchInfluencers = async () => {
       try {
@@ -101,6 +125,16 @@ const InfluencerCard = () => {
       const nicheMatch = influencer.ContentNiche?.toLowerCase().includes(contentNicheSearch.toLowerCase());
       const religionMatch = influencer.Religion?.toLowerCase().includes(religionSearch.toLowerCase());
 
+        // --- Ethnicity filter (new) ---
+    const rawEth = influencer.Ethnicity ?? influencer.Ethnisity ?? '';
+    const ethVals = Array.isArray(rawEth)
+      ? rawEth.map(v => String(v).toLowerCase().trim())
+      : String(rawEth).toLowerCase().split(',').map(v => v.trim()).filter(Boolean);
+
+    const ethnicityMatch = selectedEthnicity === ''
+      ? true
+      : ethVals.includes(selectedEthnicity.toLowerCase());
+
       let followerSizeMatch = true;
       if (selectedFollowerSize !== '') {
         const size = Number(influencer.FollowerSizeAndTier);
@@ -151,6 +185,7 @@ const InfluencerCard = () => {
       return (
         nameMatch &&
         geoMatch &&
+        ethnicityMatch&&
         languageMatch &&
         nicheMatch &&
         religionMatch &&
@@ -163,7 +198,7 @@ const InfluencerCard = () => {
     setFilteredInfluencers(filtered);
   }, [
     nameSearch, geoLocationSearch, languageSearch, contentNicheSearch, religionSearch,
-    selectedFollowerSize, selectedEngagementRate, selectedFilterCost, influencers
+    selectedFollowerSize, selectedEngagementRate, selectedFilterCost, influencers,selectedEthnicity
   ]);
 
   if (loading) return <p className="loading-message">Loading influencers...</p>;
@@ -198,12 +233,25 @@ const InfluencerCard = () => {
           ))}
         </select>
 
+        
+
         <select value={selectedFilterCost} onChange={(e) => setSelectedFilterCost(e.target.value)} className="search-input">
           <option value="">All Costs</option>
           {filterCosts.map((cost) => (
             <option key={cost._id} value={cost.cost}>{cost.cost}</option>
           ))}
         </select>
+
+        <select
+  value={selectedEthnicity}
+  onChange={(e) => setSelectedEthnicity(e.target.value)}
+  className="search-input"
+>
+  <option value="">All Ethnicities</option>
+  {ethnicities.map((eth) => (
+    <option key={eth} value={eth}>{eth}</option>
+  ))}
+</select>
       </div>
 
       <div className="influencer-grid">
